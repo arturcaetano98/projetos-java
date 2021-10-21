@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core" 
+    xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:composition template="/_template.xhtml">
+	<ui:define name = "titulo">Cadastro de Alunos</ui:define>
+		<ui:define name="corpo">
+	<h2>
+		<h:outputText value="Novo Aluno" rendered="#{alunoBean.aluno.id==0}" />
+		<h:outputText value="Editar Aluno" rendered ="#{alunoBean.aluno.id!=0}" />
+	</h2>
+	<h:form>
+		<h:inputHidden value="#{alunoBean.aluno.id}" />
+		<fieldset>
+			<legend>DADOS DO ALUNO</legend>
+			<h:outputLabel value="Nome:" for="nome"/>
+			<h:inputText id="nome" value="#{alunoBean.aluno.nome}"/>
+			<h:outputLabel value="Telefone:"/>
+			<p:inputMask value="#{alunoBean.aluno.telefone}" mask="(99) 9999-9999" id="fone" />
+			<h:outputLabel value="Email:" for="email"/>
+			<h:inputText id="email" value = "#{alunoBean.aluno.email}"/>
+			<p:outputLabel value = "Dt. Nasc.:" pattern = "dd/MM/yyyy" />
+			<p:calendar />
+		</fieldset>
+		<center>
+		<h:panelGrid columns="2">
+			<h:commandButton value="Gravar" action="#{alunoBean.grava}"/> 
+		</h:panelGrid>
+		</center>
+	    <h:dataTable value="#{alunoBean.alunos}" var="aluno" styleClass="dados" rowClasses="par,impar">
+			<h:column> 
+				<f:facet name="header">Nome</f:facet>
+				#{aluno.nome}
+			</h:column>
+			<h:column> 
+				<f:facet name="header">Telefone</f:facet>
+				#{aluno.telefone}
+			</h:column>
+			<h:column> 
+				<f:facet name="header">Email</f:facet>
+				#{aluno.email}
+			</h:column>
+			<h:column>
+		    	<h:commandLink value="Alterar">
+					<f:setPropertyActionListener target = "#{alunoBean.aluno}" value="#{aluno}" />
+				</h:commandLink>
+			</h:column>
+		</h:dataTable>    
+	</h:form>
+	</ui:define>
+	</ui:composition>
+</html>

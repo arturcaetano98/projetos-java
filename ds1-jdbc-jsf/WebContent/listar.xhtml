@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous" />
+	<title>Loja - Cadastro de Produtos</title>
+</h:head>
+<h:body>
+	<br/>
+	<div class="container">
+		<ul class="nav nav-pills nav-fill">
+		  <li class="nav-item">
+		    <a class="nav-link " aria-current="page" href="preencher.xhtml">Preencher</a>
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link active" href="listar.xhtml">Listar</a>
+		  </li>
+		</ul>
+		<div class="row">
+	    	<div class="col-sm">
+	    		<br/>
+				<h2>
+					<center>
+						<h:outputLabel value="Produtos Cadastrados" />
+					</center>
+				</h2>
+				<h:form>
+					<br/>
+					<h:dataTable value="#{produtoBean.produtos}" var="produto" class="table">
+					  <thead>
+					    <tr>
+					      <td scope="col">Nome:</td>
+					      <td scope="col">Descrição:</td>
+					      <td scope="col">Preço:</td>
+					      <td scope="col">Alterar:</td>
+					      <td scope="col">Excluir:</td>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <tr>
+					      <h:column>
+					        <td>#{produto.nome}</td>
+					        <td>#{produto.descricao}</td>
+					        <td>#{produto.preco}</td>
+					        <td>
+					          <h:commandButton  value="Alterar" class="btn btn-link" action="#{produtoBean.redireciona}">
+					            <f:setPropertyActionListener target="#{produtoBean.produto}" value="#{produto}" />
+					            </h:commandButton>
+					          </td>
+					          <td>
+					          <h:commandButton  action="#{produtoBean.remove}" value="Remover" class="btn btn-link" >
+					            <f:setPropertyActionListener target="#{produtoBean.produto}" value="#{produto}"/>
+					          </h:commandButton>
+					          </td>
+					      </h:column>
+					    </tr>
+					  </tbody>
+					</h:dataTable>
+				</h:form>
+	    	</div>
+		</div>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous" />
+</h:body>
+</html>

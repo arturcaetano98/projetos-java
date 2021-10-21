@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous" />
+	<title>Loja - Cadastro de Produtos</title>
+</h:head>
+<h:body>
+	<br/>
+	<div class="container">
+		<ul class="nav nav-pills nav-fill">
+		  <li class="nav-item">
+		    <a class="nav-link active" aria-current="page" href="preencher.xhtml">Preencher</a>
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link" href="listar.xhtml">Listar</a>
+		  </li>
+		</ul>
+		<div class="row">
+			<div class="col-sm">
+	    	</div>
+	    	<div class="col-sm">
+	    		<br/>
+				<h2>
+					<center>
+						<h:outputLabel value="Novo Produto" rendered="#{produtoBean.produto.id==0}" />
+						<h:outputLabel value="Editar Produto" rendered="#{produtoBean.produto.id!=0}" />
+					</center>
+				</h2>
+				<h:form>
+					<h:inputHidden id="id"  value="#{produtoBean.produto.id}" class="form-control me-2" />
+					<h:outputLabel value="Nome:" for="nome" />
+					<h:inputText id="nome"  value="#{produtoBean.produto.nome}" class="form-control me-2" />
+					<h:outputLabel value="Descri&ccedil;&atilde;o:" for="descricao" />
+					<h:inputTextarea id="descricao"  value="#{produtoBean.produto.descricao}" class="form-control me-2" />
+					<h:outputLabel value="Pre&ccedil;o:" for="preco" />
+					<h:inputText id="preco" value="#{produtoBean.produto.preco}" class="form-control me-2" />
+					<br/>
+					<center><h:commandButton value="Gravar" action="#{produtoBean.grava}" class="btn btn-primary"/></center>
+				</h:form>
+	    	</div>
+	    	<div class="col-sm">
+	    	</div>
+		</div>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous" />
+</h:body>
+</html>
